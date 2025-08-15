@@ -53,12 +53,9 @@ def main():
 
         img_tensor = transform(img).unsqueeze(0)
 
-        device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+        device = torch.device('cpu')
         model = DigitCNN().to(device)
-        model.load_state_dict(torch.load(
-            r"C:\Users\Husmiya\Streamlit\Digit_Classifier.pth",
-            map_location=device
-        ))
+        model.load_state_dict(torch.load("Digit_Classifier.pth", map_location=device))
         model.eval()
         
         with torch.no_grad():
